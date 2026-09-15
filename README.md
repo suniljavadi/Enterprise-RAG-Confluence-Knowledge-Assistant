@@ -1,5 +1,7 @@
 # Enterprise RAG Knowledge Assistant
 
+**Status: Completed portfolio implementation with synthetic data and mock-first execution**
+
 A portfolio-quality, synthetic Confluence-style enterprise knowledge assistant built with FastAPI, Streamlit, Pydantic, SQLAlchemy-ready configuration, hybrid retrieval, reranking, and grounded answers. It runs in mock mode without an LLM API key and contains no client or proprietary data.
 
 ## Business Problem
@@ -98,7 +100,7 @@ git init
 git add .
 git commit -m "Build enterprise RAG knowledge assistant"
 git branch -M main
-git remote add origin https://github.com/<your-user>/enterprise-rag-knowledge-assistant.git
+git remote add origin https://github.com/suniljavadi/Enterprise-RAG-Confluence-Knowledge-Assistant.git
 git push -u origin main
 ```
 
