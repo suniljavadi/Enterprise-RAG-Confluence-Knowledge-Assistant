@@ -1,5 +1,12 @@
+import os
 from pathlib import Path
 import pytest
+
+os.environ["API_AUTH_TOKEN"] = ""
+os.environ["APP_ENV"] = "test"
+os.environ["DATABASE_URL"] = "sqlite:///:memory:"
+os.environ["MOCK_LLM"] = "true"
+
 from app.config import Settings
 from app.rag.service import RAGService
 

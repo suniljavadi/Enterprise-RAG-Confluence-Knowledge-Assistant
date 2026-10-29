@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException, Request
 from app.config import get_settings
 from app.models import DocumentCreate, HealthResponse, QueryRequest, QueryResponse
 from app.rag.service import RAGService
+from app.security.auth import token_matches
 
 router = APIRouter(prefix="/api/v1")
 
@@ -13,7 +14,7 @@ def get_service(request: Request) -> RAGService:
 
 def authorize(authorization: str | None = Header(default=None)) -> None:
     token = get_settings().api_auth_token
-    if token and authorization not in {f"Bearer {token}", token}:
+    if token and not token_matches(authorization, token):
         raise HTTPException(status_code=401, detail={"code": "unauthorized", "message": "Valid bearer token required"})
 
 

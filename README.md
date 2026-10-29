@@ -125,3 +125,8 @@ The ingestion pipeline validates documents with Pydantic, removes untrusted inst
 **How would you productionize it?** Replace the in-memory repository with PostgreSQL/pgvector, use managed embeddings, add cross-encoder reranking, SSO, tenant isolation, OpenTelemetry, rate limits, and human-reviewed evaluation.
 
 **What does the evaluation measure?** Source overlap for retrieval precision/recall and citation correctness, groundedness/refusal behavior, latency, and a reportable hallucination rate.
+
+## Production Notes
+- Set `APP_ENV=production` to enforce startup checks: non-demo `API_AUTH_TOKEN`, non-SQLite `DATABASE_URL`, no wildcard `CORS_ORIGINS`.
+- Configure `CORS_ORIGINS` (comma-separated) and `POSTGRES_USER`/`POSTGRES_PASSWORD` via environment; never commit `.env`.
+- Every response carries `X-Request-ID`; access logs are emitted per request. CI runs pytest and a Docker build.
